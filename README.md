@@ -55,3 +55,12 @@ Think of a way you can expel students without just hiding those divs on the page
 - House Colors: The color of the student's card changes depending on which house they were sorted.
 - Card Sorting/Ordering: Sort the student cards by some criteria (i.e. alphabetically by name, by house)
 
+
+
+<form id="student-form">
+    <div class="mb-3">
+      <label for="student-input" class="form-label">First Year's Name</label>
+      <input type="password" class="form-control" id="student-input">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
