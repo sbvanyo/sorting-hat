@@ -2,9 +2,14 @@ body {
   background-color: peachpuff;
 }
 
-.hello-card {
+#hello-card {
   background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#sorted-cards {
+  display: flex;
+  flex-flow: row wrap;
 }
