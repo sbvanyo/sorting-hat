@@ -5,19 +5,25 @@ const students = [
   {
     id: 1,
     name: "Bellatrix",
-    house: "SLYTHERIN",
+    house: "Slytherin",
     image: "https://images.unsplash.com/photo-1500373994708-4d781bd7bd15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
   },
   {
     id: 2,
     name: "Buckbeak",
-    house: "GRYFFINDOR",
+    house: "Gryffindor",
     image: "https://images.unsplash.com/photo-1500373994708-4d781bd7bd15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
   },
   {
     id: 3,
-    name: "Hedwig",
-    house: "HUFFLEPUFF",
+    name: "Fluffy",
+    house: "Ravenclaw",
+    image: "https://images.unsplash.com/photo-1500373994708-4d781bd7bd15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+  },
+  {
+    id: 4,
+    name: "Filch",
+    house: "Hufflepuff",
     image: "https://images.unsplash.com/photo-1500373994708-4d781bd7bd15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
   }
 ];
@@ -69,11 +75,12 @@ const formOnDom = () => {
 
 
 //HOUSE RANDOMIZER//
-let gryffindor = 1;
-let slytherin = 2;
-let hufflepuff = 3;
-let ravenclaw = 4;
+const gryffindor = 0;
+const slytherin = 1;
+const hufflepuff = 2;
+const ravenclaw = 3;
 
+const houseRandomizer = Math.floor(Math.random() * 4);
 
 
 
@@ -91,15 +98,18 @@ const newStudent = (e) => {
   const newStudentObj = {
     id: students.length + 1,
     name: document.querySelector("#name-input").value,
-    // house: document.querySelector(),
-    // image: document.querySelector()
+    house: houseRandomizer,
+    image: "https://cdna.artstation.com/p/assets/images/images/004/163/098/large/sam-rowan-boswell-niffler-v001-009-sr.jpg?1480958484&dl=1"
   }
+
 
 students.unshift(newStudentObj);
 cardsOnDom(students);
-form.reset();
+document.querySelector("form").reset();
 
 };
+
+
 
 form.addEventListener('submit', newStudent);
 
@@ -125,6 +135,45 @@ sorted.addEventListener('click', (e) => {
   }
 })
 
+// //GET EXPELLED CARDS ON DOM
+// const expelledOnDom = (array) => {
+//   let domString = "";
+//   for (const student of array) {
+//     domString += `<div class="card" style="width: 18rem;">
+//     <img src="${student.image}" class="card-img-top" alt="placeholder hedwig">
+//     <div class="card-header">${student.house}!</div>
+//     <div class="card-body">
+//       <h5 class="card-title">${student.name}</h5>
+//       <p class="card-text">"wingardium leviosa"</p>
+//       <button class="btn btn-danger" id="delete--${student.id}">Expel</button>
+//     </div>
+//   </div>`
+//   }
+
+//   renderToDom("#expelled-cards", domString);
+// }
+
+
+
+// //EXPEL
+
+// // 1. Target the sorted cards div
+// const expelled = document.querySelector("#sorted-cards");
+// // 2. Add an event listener to capture clicks
+// sorted.addEventListener('click', (e) => {
+//   // 3. check e.target.id includes "delete"
+//     if(e.target.id.includes("delete")) {
+//       const [, id] = e.target.id.split("--");
+//   // 4. add logic to remove from array
+//       const index = students.findIndex(student => student.id === Number(id));
+//     //.splice modifies the original array
+//       expelled.push(students.splice(index, 1));
+//   // 5. Repaint the DOM with the updated array
+//       cardsOnDom(students);
+//       expelledOnDom(expelled);
+//     }
+//   })
+
 
 
 
@@ -139,7 +188,54 @@ showForm.addEventListener('click', () => {
 });
 
 
-// //TARGET SORT BUTTON ON FORM
-// const sortMe = document.querySelector("#sort-btn");
-// // ADD EVENT LISTENER TO FORM SUBMIT W/ CALLBACK FUNCTION
-// sortMe.addEventListener('submit', newStudent);
+
+// ******************** //
+// ****** FILTER ****** //
+// ******************** //
+
+// function to filter students by house
+const filter = (array, houseString) => {
+  const filteredArray = [];
+
+  for (const student of students) {
+    if (student.house === houseString) {
+      filteredArray.push(student);
+    }
+  }
+
+  return filteredArray;
+}
+
+
+// 1. Target buttons on the DOM
+const showGryffindor = document.querySelector("#gryffindor-btn");
+const showHufflepuff = document.querySelector("#hufflepuff-btn");
+const showRavenclaw = document.querySelector("#ravenclaw-btn");
+const showSlytherin = document.querySelector("#slytherin-btn");
+const showAll = document.querySelector("#all-btn");
+
+// 2. Add click event to show all the houses on button click using the function we created above
+showAll.addEventListener('click', () => {
+  cardsOnDom(students);
+});
+
+// 3. Add click event to filter by house on button click
+showGryffindor.addEventListener('click', () => {
+  const gryffindor = filter(students, "Gryffindor");
+  cardsOnDom(gryffindor);
+})
+
+showHufflepuff.addEventListener('click', () => {
+  const hufflepuff = filter(students, "Hufflepuff");
+  cardsOnDom(hufflepuff);
+})
+
+showRavenclaw.addEventListener('click', () => {
+  const ravenclaw = filter(students, "Ravenclaw");
+  cardsOnDom(ravenclaw);
+})
+
+showSlytherin.addEventListener('click', () => {
+  const slytherin = filter(students, "Slytherin");
+  cardsOnDom(slytherin);
+})
