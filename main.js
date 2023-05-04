@@ -38,6 +38,54 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
+// ******************** //
+// ****** DELETE ****** //
+// ******************** //
+
+
+
+
+//GET EXPELLED STUDENT CARDS ON DOM
+const expelledCardsOnDom = (array) => {
+  let domString = "";
+  for (const student of array) {
+    domString += `<div class="card" id="voldy-card" style="width: 18rem;">
+    <img src="https://www.gannett-cdn.com/-mm-/1d10b02c47124839540f95461e99b239519c4db7/c=364-0-2508-1206/local/-/media/2017/02/09/USATODAY/usatsports/vol4.jpg?width=2144&height=1206&fit=crop&format=pjpg&auto=webp" class="card-img-top" alt="placeholder hedwig">
+    <div class="card-header">MERLIN'S BEARD!</div>
+    <div class="card-body">
+      <h5 class="card-title">${student.name}</h5>
+      <p class="card-text">has joined team voldy</p>
+    </div>
+  </div>`
+  }
+
+  renderToDom("#expelled-cards", domString);
+};
+
+
+//EXPEL A STUDENT
+const expelStudent = (event) => {
+  //if the id includes "expel"
+  if (event.target.id.includes("expel")) {
+    // get that object id off of our target ID
+    const [, studentId] = event.target.id.split("--");
+    // Use it to find the index of the object
+    const studentIndex = students.findIndex(
+      (student) => Number(studentId) === student.id
+    );
+
+    // splice that object out of the array
+    const expelledStudent = students.splice(studentIndex, 1);
+
+    // push our student into the expelledStudents array
+    expelledStudents.unshift(expelledStudent);
+
+    // Render both of our arrays! Expelled and regular.
+      expelledCardsOnDom(expelledStudents);
+      cardsOnDom(students);
+  }
+
+};
 
 //GET CARDS ON DOM
 const cardsOnDom = (array) => {
@@ -56,7 +104,10 @@ const cardsOnDom = (array) => {
   }
 
   renderToDom("#sorted-cards", domString);
-}
+
+//EVENT LISTENER FOR EXPEL BUTTON
+document.querySelector("#sorted-cards").addEventListener('click', expelStudent);
+};
 
 cardsOnDom(students);
 
@@ -108,7 +159,7 @@ const houseRandomizer = () => {
 // //IMAGE RANDOMIZER
 // const imageRandomizer = () => {
 
-//   switch (newStudentObj.house) {
+//   switch (house) {
 //     case "GRYFFINDOR":
 //       return `house crests/gryffindor-crest.jpg`;
 //       break;
@@ -163,53 +214,7 @@ form.addEventListener('submit', newStudent);
 
 
 
-// ******************** //
-// ****** DELETE ****** //
-// ******************** //
 
-
-
-//GET EXPELLED STUDENT CARDS ON DOM
-const expelledCardsOnDom = (array) => {
-  let domString = "";
-  for (const student of array) {
-    domString += `<div class="card" style="width: 18rem;">
-    <img src="${student.image}" class="card-img-top" alt="placeholder hedwig">
-    <div class="card-header">${student.house}!</div>
-    <div class="card-body">
-      <h5 class="card-title">${student.name}</h5>
-      <p class="card-text">"wingardium leviosa"</p>
-    </div>
-  </div>`
-  }
-
-  renderToDom("#expelled-cards", domString);
-};
-
-
-//EXPEL A STUDENT
-const expelStudent = (event) => {
-  //if the id includes "expel"
-  if (event.target.id.includes("expel")) {
-    // get that object id off of our target ID
-    const [, studentId] = event.target.id.split("--");
-    // Use it to find the index of the object
-    const studentIndex = students.findIndex(
-      (student) => Number(studentId) === student.id
-    );
-
-    // splice that object out of the array
-    const expelledStudent = students.splice(studentIndex, 1);
-
-    // push our student into the expelledStudents array
-    expelledStudents.push(expelledStudent);
-
-    // Render both of our arrays! Expelled and regular.
-      expelledCardsOnDom(expelledStudent);
-      cardsOnDom(students);
-  }
-
-};
 
 
 
