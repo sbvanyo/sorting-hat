@@ -1,5 +1,3 @@
-console.log("testing, testing");
-
 //STUDENT ARRAY
 const students = [
   {
@@ -44,19 +42,16 @@ const renderToDom = (divId, htmlToRender) => {
 // ****** DELETE ****** //
 // ******************** //
 
-
-
-
 //GET EXPELLED STUDENT CARDS ON DOM
 const expelledCardsOnDom = (array) => {
   let domString = "";
   for (const student of array) {
     domString += `<div class="card" id="voldy-card" style="width: 18rem;">
-    <img src="https://www.gannett-cdn.com/-mm-/1d10b02c47124839540f95461e99b239519c4db7/c=364-0-2508-1206/local/-/media/2017/02/09/USATODAY/usatsports/vol4.jpg?width=2144&height=1206&fit=crop&format=pjpg&auto=webp" class="card-img-top" alt="placeholder hedwig">
     <div class="card-header">MERLIN'S BEARD!</div>
+    <img src="https://www.gannett-cdn.com/-mm-/1d10b02c47124839540f95461e99b239519c4db7/c=364-0-2508-1206/local/-/media/2017/02/09/USATODAY/usatsports/vol4.jpg?width=2144&height=1206&fit=crop&format=pjpg&auto=webp" class="card-img-top" alt="placeholder hedwig">
     <div class="card-body">
-      <h5 class="card-title">${student.name}</h5>
-      <p class="card-text">has joined team voldy</p>
+      <h5 class="card-title" id="voldy-name">${student.name}</h5>
+      <p class="card-text" id="voldy-text">has joined team voldy</p>
     </div>
   </div>`
   }
@@ -82,7 +77,8 @@ const expelStudent = (event) => {
     // push our student into the expelledStudents array
     expelledStudents.unshift(expelledStudent);
 
-    // Render both of our arrays! Expelled and regular.
+    // Render both expelled and regular arrays
+      console.log(expelledStudents);
       expelledCardsOnDom(expelledStudents);
       cardsOnDom(students);
   }
@@ -98,8 +94,8 @@ const cardsOnDom = (array) => {
     <img src="${student.image}" class="card-img-top" alt="placeholder hedwig">
     <div class="card-header">${student.house}!</div>
     <div class="card-body">
-      <h5 class="card-title">${student.name}</h5>
-      <p class="card-text">"wingardium leviosa"</p>
+      <p class="card-text">HOGWARTS WELCOMES YOU,</p>
+      <h5 class="card-title" id="student-name">${student.name}</h5>
       <button class="btn btn-danger" id="expel--${student.id}">Expel</button>
     </div>
   </div>`
@@ -152,34 +148,6 @@ const houseRandomizer = () => {
   return house;
 
 }
-
-
-
-
-
-
-// //IMAGE RANDOMIZER
-// const imageRandomizer = () => {
-
-//   switch (house) {
-//     case "GRYFFINDOR":
-//       return `house crests/gryffindor-crest.jpg`;
-//       break;
-//     case "SLYTHERIN":
-//       return `house crests/slytherin-crest.jpg`;
-//       break;
-//     case 2: "HUFFLEPUFF"
-//       return `house crests/hufflepuff-crest.jpg`;
-//       break;
-//     case 3: "RAVENCLAW"
-//       return `house crests/ravenclaw-crest.jpg`;
-//       break;
-//   };
-
-// }
-
-
-
 
 
 
