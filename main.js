@@ -38,6 +38,8 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 
+
+
 // ******************** //
 // ****** DELETE ****** //
 // ******************** //
@@ -209,72 +211,6 @@ document.querySelector("form").reset();
 
 form.addEventListener('submit', newStudent);
 
-
-
-
-
-
-
-
-
-
-
-
-// // 1. Target the sorted cards div
-// const sorted = document.querySelector("#sorted-cards");
-
-// // 2. Add an event listener to capture clicks
-// sorted.addEventListener('click', (e) => {
-// // 3. check e.target.id includes "delete"
-//   if(e.target.id.includes("delete")) {
-//     const [, id] = e.target.id.split("--");
-// // 4. add logic to remove from array
-//     const index = students.findIndex(student => student.id === Number(id));
-//   //.splice modifies the original array
-//     students.splice(index, 1);
-// // 5. Repaint the DOM with the updated array
-//     cardsOnDom(students);
-//   }
-// })
-
-// //GET EXPELLED CARDS ON DOM
-// const expelledOnDom = (array) => {
-//   let domString = "";
-//   for (const student of array) {
-//     domString += `<div class="card" style="width: 18rem;">
-//     <img src="${student.image}" class="card-img-top" alt="placeholder hedwig">
-//     <div class="card-header">${student.house}!</div>
-//     <div class="card-body">
-//       <h5 class="card-title">${student.name}</h5>
-//       <p class="card-text">"wingardium leviosa"</p>
-//       <button class="btn btn-danger" id="delete--${student.id}">Expel</button>
-//     </div>
-//   </div>`
-//   }
-
-//   renderToDom("#expelled-cards", domString);
-// }
-
-
-
-// //EXPEL
-
-// // 1. Target the sorted cards div
-// const expelled = document.querySelector("#sorted-cards");
-// // 2. Add an event listener to capture clicks
-// sorted.addEventListener('click', (e) => {
-//   // 3. check e.target.id includes "delete"
-//     if(e.target.id.includes("delete")) {
-//       const [, id] = e.target.id.split("--");
-//   // 4. add logic to remove from array
-//       const index = students.findIndex(student => student.id === Number(id));
-//     //.splice modifies the original array
-//       expelled.push(students.splice(index, 1));
-//   // 5. Repaint the DOM with the updated array
-//       cardsOnDom(students);
-//       expelledOnDom(expelled);
-//     }
-//   })
 
 
 
