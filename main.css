@@ -1,6 +1,11 @@
 body {
   /* background-image: url("house_crests/candles.jpg"); */
   background-color: peachpuff;
+  font-family: 'Raleway', sans-serif;
+}
+
+#expel--${student.id} {
+  background-color: black;
 }
 
 #welcome {
@@ -18,15 +23,14 @@ body {
 
 #hello-card {
   background-color: transparent;
-  /* display: flex; */
-  /* flex-direction: column; */
   text-align: center;
   width: auto;
   align-self: center;
 }
 
 #hello-quote {
-  font-weight: bold;
+  font-family: 'Montez', cursive;
+  font-size: 300%;
 }
 
 #card-container {
@@ -52,11 +56,11 @@ body {
 }
 
 #hello-btn {
-  width: 150px;
-  height: 150px;
+  width: 135px;
+  height: 135px;
   border-radius: 50%;
   margin: 15px;
-  background-color: rgb(92, 72, 46);
+  background-color: rgb(119, 78, 163);
   border: none;
   box-shadow: 5px 5px 5px rgb(131, 131, 131);
 }
@@ -151,9 +155,19 @@ body {
   text-align: center;
   max-height: 400px;
   min-width: 18rem;
+  color: whitesmoke;
+}
+
+.card-header {
+  font-weight: bold;
 }
 
 .card-img-top {
-  height: 200px;
+  height: 100%;
   width: auto;
+}
+
+.section-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
 }
