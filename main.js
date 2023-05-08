@@ -75,10 +75,9 @@ const expelStudent = (event) => {
     const expelledStudent = students.splice(studentIndex, 1);
 
     // push our student into the expelledStudents array
-    expelledStudents.unshift(expelledStudent);
+    expelledStudents.unshift(...expelledStudent);
 
     // Render both expelled and regular arrays
-      console.log(expelledStudents);
       expelledCardsOnDom(expelledStudents);
       cardsOnDom(students);
   }
